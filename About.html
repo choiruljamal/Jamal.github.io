@@ -621,8 +621,8 @@
       </div>
 
       <div class="actions rv" style="--d:.58s">
-        <a class="btn solid" href="cv-choirul-jamal.pdf" type="application/pdf" download="CV-Choirul-Jamal.pdf">Download
-          CV
+        <a class="btn solid" id="cvBtn" href="cv-choirul-jamal.pdf" type="application/pdf"
+          download="CV-Choirul-Jamal.pdf">Download CV (PDF)
           <svg viewBox="0 0 24 24">
             <path d="M12 4v11m0 0l-4-4m4 4l4-4M5 20h14" />
           </svg></a>
@@ -699,6 +699,31 @@
         f.style.transform = 'rotateY(' + (x * 10) + 'deg) rotateX(' + (-y * 10) + 'deg)';
       });
       p.addEventListener('mouseleave', function () { f.style.transform = ''; });
+    })();
+
+    /* Download CV: bisa diunduh siapa saja, dan tetap terbuka di tab baru jika unduhan diblokir */
+    (function () {
+      var btn = document.getElementById('cvBtn');
+      var url = btn.getAttribute('href');
+      var name = 'CV-Choirul-Jamal.pdf';
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        fetch(url, { cache: 'no-cache' })
+          .then(function (r) { if (!r.ok) throw 404; return r.blob(); })
+          .then(function (b) {
+            var u = URL.createObjectURL(new Blob([b], { type: 'application/pdf' }));
+            var a = document.createElement('a');
+            a.href = u; a.download = name;
+            document.body.appendChild(a); a.click(); a.remove();
+            setTimeout(function () { URL.revokeObjectURL(u); }, 4000);
+            toast('CV berhasil diunduh');
+          })
+          .catch(function (err) {
+            if (err === 404) { toast('File CV belum tersedia'); return; }
+            var w = window.open(url, '_blank', 'noopener');
+            toast(w ? 'CV dibuka di tab baru' : 'Izinkan pop-up untuk membuka CV');
+          });
+      });
     })();
 
     /* Partikel emas di latar */
