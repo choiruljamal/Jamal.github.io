@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact - Choirul Jamal</title>
+
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600&family=Figtree:wght@400;500;600&family=Cormorant+Garamond:wght@600&display=swap"
+    rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0b0b0b;
+      --line: rgba(214, 176, 134, .3);
+      --gold: #d6b086;
+      --text: #f3ece4;
+      --side: 210px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Plus Jakarta Sans', 'Figtree', system-ui, sans-serif;
+      font-size: 15px;
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+      background:
+        radial-gradient(ellipse at 15% 0%, rgba(214, 176, 134, .12), transparent 45%),
+        radial-gradient(ellipse at 100% 100%, rgba(214, 176, 134, .12), transparent 40%),
+        var(--bg);
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 3px;
+    }
+
+    /* Partikel latar */
+    #fx {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ===== Sidebar ===== */
+    .w3-sidebar {
+      width: var(--side) !important;
+      background: #141210 !important;
+      border-right: 1px solid rgba(217, 180, 138, .35);
+      padding-top: 32px;
+      z-index: 3;
+    }
+
+    .w3-sidebar h3 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 24px;
+      text-align: center;
+      color: #d9b48a !important;
+      margin: 0 0 20px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid rgba(217, 180, 138, .35);
+    }
+
+    .w3-sidebar .w3-button {
+      color: #f4f1ec !important;
+      font-size: 14px;
+      padding: 11px 18px !important;
+      margin: 0 10px 6px;
+      width: calc(100% - 20px);
+      text-align: left;
+      border: 1px solid transparent;
+      border-radius: 10px;
+      transition: transform .2s, background .2s;
+    }
+
+    .w3-sidebar .w3-button:hover {
+      background: rgba(217, 180, 138, .14) !important;
+      color: #f0cfa3 !important;
+      transform: translateX(4px);
+    }
+
+    .w3-sidebar .w3-button.active {
+      background: linear-gradient(90deg, rgba(217, 180, 138, .3), rgba(217, 180, 138, .05)) !important;
+      border-color: rgba(217, 180, 138, .35);
+      color: #f0cfa3 !important;
+    }
+
+    .side-foot {
+      position: absolute;
+      bottom: 20px;
+      left: 0;
+      right: 0;
+      padding: 0 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .social {
+      display: flex;
+      gap: 8px;
+    }
+
+    .social a {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid var(--line);
+      display: grid;
+      place-items: center;
+      color: var(--text);
+      background: #111;
+      transition: transform .2s, border-color .2s, color .2s;
+    }
+
+    .social a:hover {
+      transform: translateY(-3px);
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .social svg {
+      width: 15px;
+      height: 15px;
+      fill: currentColor;
+    }
+
+    /* ===== Konten ===== */
+    .content {
+      position: relative;
+      z-index: 1;
+      margin-left: var(--side);
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr);
+      gap: 40px;
+      align-items: center;
+      padding: 32px 44px;
+      max-width: 1200px;
+    }
+
+    .content h1,
+    .content h2,
+    .content p {
+      margin: 0;
+    }
+
+    .content a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .content svg {
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* Animasi masuk */
+    @keyframes up {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    .rv {
+      opacity: 0;
+      animation: up .7s cubic-bezier(.2, .7, .2, 1) forwards;
+      animation-delay: var(--d, 0s);
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 12px;
+      letter-spacing: .45em;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+
+    .eyebrow::before,
+    .eyebrow::after {
+      content: "";
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .eyebrow::before {
+      width: 32px;
+    }
+
+    .eyebrow::after {
+      width: 60px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(40px, 5vw, 62px);
+      line-height: 1.05;
+      font-weight: 700;
+    }
+
+    h1 span {
+      background: linear-gradient(90deg, #d6b086 20%, #f0dcc0 50%, #d6b086 80%);
+      background-size: 200% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: shine 5s linear infinite;
+    }
+
+    @keyframes shine {
+      to {
+        background-position: -200% 0;
+      }
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 14px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, .03);
+      font-size: 12px;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #5fd38d;
+      box-shadow: 0 0 0 0 rgba(95, 211, 141, .6);
+      animation: pulse 2s infinite;
+    }
+
+    .dot.off {
+      background: #c9a36a;
+      animation: none;
+    }
+
+    @keyframes pulse {
+      70% {
+        box-shadow: 0 0 0 8px rgba(95, 211, 141, 0);
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 rgba(95, 211, 141, 0);
+      }
+    }
+
+    .lead {
+      margin-top: 14px;
+      font-size: 15px;
+      line-height: 1.6;
+      max-width: 30em;
+    }
+
+    .links {
+      margin-top: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      max-width: 460px;
+    }
+
+    .link,
+    .card {
+      --mx: 50%;
+      --my: 50%;
+    }
+
+    .link::before,
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      pointer-events: none;
+      background: radial-gradient(260px circle at var(--mx) var(--my), rgba(214, 176, 134, .14), transparent 60%);
+      opacity: 0;
+      transition: opacity .25s;
+    }
+
+    .link:hover::before,
+    .card:hover::before {
+      opacity: 1;
+    }
+
+    .link {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 0 14px 0 18px;
+      height: 70px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255, 255, 255, .04), rgba(255, 255, 255, .01));
+      transition: border-color .2s, transform .25s;
+    }
+
+    .link:hover {
+      border-color: var(--gold);
+      transform: translateY(-2px);
+    }
+
+    .link .ic {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .link .ic.fill {
+      background: linear-gradient(135deg, #e6c9a4, #8a6d4b);
+      color: #1a1612;
+    }
+
+    .link .ic svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .link .ic.fill svg {
+      stroke: #1a1612;
+    }
+
+    .link .ic.plain svg {
+      color: var(--gold);
+      width: 40px;
+      height: 40px;
+    }
+
+    .link .t {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .link b {
+      display: block;
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .link .val {
+      display: block;
+      font-size: 14px;
+      color: #e9e0d6;
+      overflow-wrap: anywhere;
+    }
+
+    .acts {
+      display: flex;
+      gap: 8px;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .ab {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid var(--line);
+      background: #121110;
+      display: grid;
+      place-items: center;
+      color: var(--text);
+      cursor: pointer;
+      padding: 0;
+      transition: background .2s, border-color .2s, color .2s, transform .2s;
+    }
+
+    .ab:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: #1a1713;
+      transform: scale(1.08);
+    }
+
+    .ab svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .ab[data-tip] {
+      position: relative;
+    }
+
+    .ab[data-tip]:hover::after {
+      content: attr(data-tip);
+      position: absolute;
+      bottom: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1d1914;
+      border: 1px solid var(--line);
+      color: var(--text);
+      font-size: 11px;
+      padding: 4px 8px;
+      border-radius: 6px;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+
+    /* ===== Kartu form ===== */
+    .card {
+      position: relative;
+      border-radius: 26px;
+      padding: 68px 26px 26px;
+      margin-top: 52px;
+      max-width: 400px;
+      justify-self: end;
+      width: 100%;
+      border: 1px solid rgba(214, 176, 134, .45);
+      background: linear-gradient(160deg, rgba(255, 255, 255, .07), rgba(255, 255, 255, .015) 40%, rgba(214, 176, 134, .05));
+      backdrop-filter: blur(6px);
+      box-shadow: 0 0 30px rgba(214, 176, 134, .12), inset 0 0 24px rgba(214, 176, 134, .05);
+    }
+
+    .badge {
+      position: absolute;
+      top: -48px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      border: 2px solid #8a6d4b;
+      background: radial-gradient(circle, #1a1612, #0b0b0b);
+      display: grid;
+      place-items: center;
+      box-shadow: 0 0 24px rgba(214, 176, 134, .35);
+    }
+
+    .badge svg {
+      width: 48px;
+      height: 48px;
+      color: #e6c9a4;
+      stroke-width: 1.5;
+      animation: float 3.2s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      50% {
+        transform: translate(4px, -5px) rotate(4deg);
+      }
+    }
+
+    .badge.sent svg {
+      animation: fly 1s ease-in forwards;
+    }
+
+    @keyframes fly {
+      to {
+        transform: translate(60px, -60px) scale(.4);
+        opacity: 0;
+      }
+    }
+
+    .card h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    .card h2 span {
+      color: var(--gold);
+    }
+
+    .sub {
+      text-align: center;
+      margin-top: 8px;
+      font-size: 13px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(214, 176, 134, .2);
+    }
+
+    form {
+      margin: 20px 0 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      position: relative;
+    }
+
+    .field {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 0 16px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: rgba(10, 10, 10, .55);
+      position: relative;
+      transition: border-color .2s, box-shadow .2s;
+    }
+
+    .field svg {
+      width: 22px;
+      height: 22px;
+      color: #e6c9a4;
+      flex-shrink: 0;
+      margin-top: 12px;
+    }
+
+    .field input,
+    .field textarea {
+      flex: 1;
+      min-width: 0;
+      background: none;
+      border: 0;
+      color: var(--text);
+      font: inherit;
+      font-size: 14px;
+      padding: 13px 0;
+      outline: 0;
+      resize: none;
+    }
+
+    .field textarea {
+      height: 86px;
+      padding-bottom: 20px;
+    }
+
+    .field input::placeholder,
+    .field textarea::placeholder {
+      color: #cfc5ba;
+    }
+
+    .field:focus-within {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(214, 176, 134, .18);
+    }
+
+    .field.bad {
+      border-color: #d98a7a;
+      animation: shake .35s;
+    }
+
+    @keyframes shake {
+      25% {
+        transform: translateX(-5px);
+      }
+
+      75% {
+        transform: translateX(5px);
+      }
+    }
+
+    .count {
+      position: absolute;
+      right: 14px;
+      bottom: 6px;
+      font-size: 11px;
+      color: #a99d90;
+    }
+
+    .count.warn {
+      color: #e6a778;
+    }
+
+    .btns {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .send {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      height: 46px;
+      border-radius: 999px;
+      border: 0;
+      cursor: pointer;
+      font: 600 15px 'Plus Jakarta Sans', sans-serif;
+      background: linear-gradient(135deg, #e6c9a4, #a07f5a 50%, #e6c9a4);
+      background-size: 200% 100%;
+      color: #14110e;
+      box-shadow: 0 4px 18px rgba(214, 176, 134, .25);
+      transition: background-position .5s, transform .2s;
+    }
+
+    .send:hover {
+      background-position: 100% 0;
+      transform: translateY(-1px);
+    }
+
+    .send svg {
+      width: 18px;
+      height: 18px;
+      stroke: #14110e;
+    }
+
+    .send.wa {
+      height: 42px;
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--gold);
+      box-shadow: none;
+      font-size: 14px;
+    }
+
+    .send.wa:hover {
+      background: rgba(214, 176, 134, .12);
+    }
+
+    .send.wa svg {
+      stroke: var(--gold);
+      width: 20px;
+      height: 20px;
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 28px;
+      transform: translate(-50%, 30px);
+      opacity: 0;
+      z-index: 20;
+      padding: 12px 20px;
+      border-radius: 999px;
+      font-size: 14px;
+      background: #1b1814;
+      border: 1px solid var(--gold);
+      color: var(--text);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, .5);
+      transition: transform .3s, opacity .3s;
+      pointer-events: none;
+    }
+
+    .toast.show {
+      transform: translate(-50%, 0);
+      opacity: 1;
+    }
+
+    /* ===== Responsif ===== */
+    @media (max-width: 960px) {
+      .content {
+        grid-template-columns: 1fr;
+        gap: 36px;
+        padding: 32px 28px;
+      }
+
+      .card {
+        justify-self: start;
+        margin-top: 60px;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .w3-sidebar {
+        position: static !important;
+        width: 100% !important;
+        height: auto;
+        padding: 18px 0 14px;
+      }
+
+      .w3-sidebar h3 {
+        margin-bottom: 12px;
+        padding-bottom: 12px;
+      }
+
+      .side-foot {
+        position: static;
+        margin-top: 10px;
+      }
+
+      .content {
+        margin-left: 0;
+        min-height: 0;
+        padding: 28px 18px;
+      }
+
+      .eyebrow {
+        letter-spacing: .3em;
+        font-size: 11px;
+      }
+
+      .link {
+        height: auto;
+        padding: 12px 14px;
+      }
+
+      .card {
+        max-width: none;
+        padding: 64px 18px 22px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+
+      .rv {
+        opacity: 1;
+      }
+
+      #fx {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="fx" aria-hidden="true"></canvas>
+
+  <!-- Sidebar -->
+  <div class="w3-sidebar w3-light-grey w3-bar-block">
+    <h3 class="w3-bar-item">Portofolio</h3>
+    <a href="Home.html" class="w3-bar-item w3-button">🏠 Home</a>
+    <a href="About.html" class="w3-bar-item w3-button">👤 About</a>
+    <a href="Project.html" class="w3-bar-item w3-button">📁 Project</a>
+    <a href="Contact.html" class="w3-bar-item w3-button active">📞 Contact</a>
+
+    <div class="side-foot">
+      <div class="social">
+        <a href="#" aria-label="GitHub"><svg viewBox="0 0 24 24">
+            <path
+              d="M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A11.5 11.5 0 0 0 12 .5z" />
+          </svg></a>
+        <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24">
+            <path
+              d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.5h4V21H3zM9.5 9.5h3.8v1.6h.1c.5-1 1.8-2 3.8-2 4 0 4.8 2.6 4.8 6V21h-4v-5.2c0-1.3 0-2.8-1.7-2.8s-2 1.3-2 2.7V21h-4z" />
+          </svg></a>
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24">
+            <path
+              d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm5 3.5a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9zm0 2a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM17.5 5.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+          </svg></a>
+        <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24">
+            <path
+              d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2C2 8.8 2 12 2 12s0 3.2.4 4.8a2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8C22 15.2 22 12 22 12s0-3.2-.4-4.8zM10 15V9l5.2 3z" />
+          </svg></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Isi halaman -->
+  <div class="content">
+    <section>
+      <div class="eyebrow rv">GET IN TOUCH</div>
+      <h1 class="rv" style="--d:.08s">Con<span>tact</span></h1>
+
+      <div class="status-pill rv" style="--d:.16s" id="pill">
+        <span class="dot" id="dot"></span><span id="pillText">Memeriksa status…</span>
+      </div>
+
+      <p class="lead rv" style="--d:.22s">Jika Anda memiliki pertanyaan, saran, atau ingin bekerja sama, jangan ragu
+        untuk menghubungi saya.</p>
+
+      <div class="links">
+        <div class="link rv" style="--d:.3s">
+          <div class="ic fill"><svg viewBox="0 0 24 24">
+              <rect x="3" y="5" width="18" height="14" rx="2" />
+              <path d="M3 7l9 6 9-6" />
+            </svg></div>
+          <div class="t"><b>Email</b><span class="val">choiruljamal@gmail.com</span></div>
+          <div class="acts">
+            <button class="ab" type="button" data-copy="choiruljamal@gmail.com" data-tip="Salin"
+              aria-label="Salin email"><svg viewBox="0 0 24 24">
+                <rect x="9" y="9" width="11" height="11" rx="2" />
+                <path d="M5 15V5a2 2 0 0 1 2-2h8" />
+              </svg></button>
+            <a class="ab" href="mailto:choiruljamal@gmail.com" data-tip="Buka email" aria-label="Buka email"><svg
+                viewBox="0 0 24 24">
+                <path d="M9 5l7 7-7 7" />
+              </svg></a>
+          </div>
+        </div>
+
+        <div class="link rv" style="--d:.38s">
+          <div class="ic plain"><svg viewBox="0 0 24 24">
+              <path d="M3 21l1.7-5A9 9 0 1 1 8 19.3z" />
+              <path d="M9 8.5c0 3.5 3 6.5 6.5 6.5l1-1.5-2-1-1 .8c-1-.4-2-1.4-2.4-2.4l.8-1-1-2z" />
+            </svg></div>
+          <div class="t"><b>WhatsApp</b><span class="val">+62 878 1941 5131</span></div>
+          <div class="acts">
+            <button class="ab" type="button" data-copy="+62 812 3456 7890" data-tip="Salin"
+              aria-label="Salin nomor WhatsApp"><svg viewBox="0 0 24 24">
+                <rect x="9" y="9" width="11" height="11" rx="2" />
+                <path d="M5 15V5a2 2 0 0 1 2-2h8" />
+              </svg></button>
+            <a class="ab" href="https://wa.me/6287819415131" target="_blank" rel="noopener" data-tip="Chat WhatsApp"
+              aria-label="Buka WhatsApp"><svg viewBox="0 0 24 24">
+                <path d="M9 5l7 7-7 7" />
+              </svg></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card rv" style="--d:.2s" aria-labelledby="form-title">
+      <div class="badge" id="badge"><svg viewBox="0 0 24 24">
+          <path d="M21 3L3 10.5l7 2.5 2.5 7z" />
+          <path d="M21 3L10 13" />
+        </svg></div>
+      <h2 id="form-title">Kirim <span>Pesan</span></h2>
+      <p class="sub">Saya akan membalas pesan Anda secepat mungkin.</p>
+
+      <form id="contactForm" novalidate>
+        <label class="field"><svg viewBox="0 0 24 24">
+            <circle cx="12" cy="8" r="4" />
+            <path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7z" />
+          </svg>
+          <input type="text" name="nama" placeholder="Nama Anda" aria-label="Nama Anda" autocomplete="name"></label>
+        <label class="field"><svg viewBox="0 0 24 24">
+            <rect x="3" y="5" width="18" height="14" rx="2" />
+            <path d="M3 7l9 6 9-6" />
+          </svg>
+          <input type="email" name="email" placeholder="Email Anda" aria-label="Email Anda"
+            autocomplete="email"></label>
+        <label class="field"><svg viewBox="0 0 24 24">
+            <path d="M21 12a8 8 0 0 1-11.6 7.1L3 21l1.9-5.4A8 8 0 1 1 21 12z" />
+            <path d="M8.5 12h.01M12 12h.01M15.5 12h.01" />
+          </svg>
+          <textarea name="pesan" maxlength="300" placeholder="Pesan Anda..." aria-label="Pesan Anda"></textarea>
+          <span class="count" id="count">0/300</span></label>
+
+        <div class="btns">
+          <button class="send" type="submit">
+            <svg viewBox="0 0 24 24" style="fill:#14110e">
+              <path d="M21 3L3 10.5l7 2.5 2.5 7z" />
+            </svg>
+            Kirim via Email
+          </button>
+          <button class="send wa" type="button" id="waBtn">
+            <svg viewBox="0 0 24 24">
+              <path d="M3 21l1.7-5A9 9 0 1 1 8 19.3z" />
+              <path d="M9 8.5c0 3.5 3 6.5 6.5 6.5l1-1.5-2-1-1 .8c-1-.4-2-1.4-2.4-2.4l.8-1-1-2z" />
+            </svg>
+            Kirim via WhatsApp
+          </button>
+        </div>
+      </form>
+    </section>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    var EMAIL = 'choiruljamal@gmail.com';
+    var WA = '6287819415131';
+
+    /* Toast */
+    var toastEl = document.getElementById('toast'), toastT;
+    function toast(msg) {
+      toastEl.textContent = msg;
+      toastEl.classList.add('show');
+      clearTimeout(toastT);
+      toastT = setTimeout(function () { toastEl.classList.remove('show'); }, 2400);
+    }
+
+    /* Salin ke clipboard */
+    document.querySelectorAll('[data-copy]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var text = btn.getAttribute('data-copy');
+        var done = function () { toast('Tersalin: ' + text); };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(done, function () { toast('Gagal menyalin'); });
+        } else {
+          var t = document.createElement('textarea');
+          t.value = text; document.body.appendChild(t); t.select();
+          try { document.execCommand('copy'); done(); } catch (e) { toast('Gagal menyalin'); }
+          document.body.removeChild(t);
+        }
+      });
+    });
+
+    /* Efek cahaya mengikuti kursor */
+    document.querySelectorAll('.link, .card').forEach(function (el) {
+      el.addEventListener('mousemove', function (e) {
+        var r = el.getBoundingClientRect();
+        el.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+        el.style.setProperty('--my', (e.clientY - r.top) + 'px');
+      });
+    });
+
+    /* Status ketersediaan (WIB, 08.00 - 21.00) */
+    (function () {
+      var wib = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' }));
+      var h = wib.getHours(), m = ('0' + wib.getMinutes()).slice(-2);
+      var online = h >= 8 && h < 21;
+      document.getElementById('dot').classList.toggle('off', !online);
+      document.getElementById('pillText').textContent =
+        (online ? 'Tersedia sekarang' : 'Sedang offline, balasan besok') + ' · ' + ('0' + h).slice(-2) + '.' + m + ' WIB';
+    })();
+
+    /* Form */
+    var form = document.getElementById('contactForm');
+    var msg = form.pesan, counter = document.getElementById('count');
+    msg.addEventListener('input', function () {
+      counter.textContent = msg.value.length + '/300';
+      counter.classList.toggle('warn', msg.value.length > 260);
+    });
+    form.querySelectorAll('input, textarea').forEach(function (el) {
+      el.addEventListener('input', function () { el.closest('.field').classList.remove('bad'); });
+    });
+
+    function validate(needEmail) {
+      var ok = true;
+      var checks = [[form.nama, form.nama.value.trim().length > 0], [msg, msg.value.trim().length > 0]];
+      if (needEmail) checks.push([form.email, /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.value.trim())]);
+      checks.forEach(function (c) {
+        if (!c[1]) { ok = false; var f = c[0].closest('.field'); f.classList.remove('bad'); void f.offsetWidth; f.classList.add('bad'); }
+      });
+      if (!ok) toast('Mohon lengkapi data dengan benar');
+      return ok;
+    }
+
+    function planeAnim() {
+      var b = document.getElementById('badge');
+      b.classList.add('sent');
+      setTimeout(function () { b.classList.remove('sent'); }, 1600);
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!validate(true)) return;
+      var subject = encodeURIComponent('Pesan dari ' + form.nama.value.trim());
+      var body = encodeURIComponent(msg.value.trim() + '\n\nNama: ' + form.nama.value.trim() + '\nEmail: ' + form.email.value.trim());
+      planeAnim();
+      toast('Membuka aplikasi email Anda…');
+      setTimeout(function () { window.location.href = 'mailto:' + EMAIL + '?subject=' + subject + '&body=' + body; }, 700);
+    });
+
+    document.getElementById('waBtn').addEventListener('click', function () {
+      if (!validate(false)) return;
+      var text = 'Halo Choirul, saya ' + form.nama.value.trim() + '.\n\n' + msg.value.trim();
+      planeAnim();
+      toast('Membuka WhatsApp…');
+      setTimeout(function () { window.open('https://wa.me/' + WA + '?text=' + encodeURIComponent(text), '_blank', 'noopener'); }, 500);
+    });
+
+    /* Partikel emas di latar */
+    (function () {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      var c = document.getElementById('fx'), ctx = c.getContext('2d'), P = [], W, H;
+      function size() { W = c.width = innerWidth; H = c.height = innerHeight; }
+      size(); addEventListener('resize', size);
+      for (var i = 0; i < 45; i++) P.push({
+        x: Math.random() * innerWidth, y: Math.random() * innerHeight,
+        r: Math.random() * 1.6 + .4, v: Math.random() * .25 + .08, a: Math.random() * Math.PI * 2
+      });
+      (function loop() {
+        ctx.clearRect(0, 0, W, H);
+        P.forEach(function (p) {
+          p.y -= p.v; p.a += .02;
+          if (p.y < -5) { p.y = H + 5; p.x = Math.random() * W; }
+          ctx.globalAlpha = .25 + Math.sin(p.a) * .25;
+          ctx.fillStyle = '#e6c9a4';
+          ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, 6.283); ctx.fill();
+        });
+        requestAnimationFrame(loop);
+      })();
+    })();
+  </script>
+</body>
+
+</html>

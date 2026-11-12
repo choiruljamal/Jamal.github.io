@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About - Choirul Jamal</title>
+
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600&family=Figtree:wght@400;500;600&family=Cormorant+Garamond:wght@600&display=swap"
+    rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0b0b0b;
+      --line: rgba(214, 176, 134, .3);
+      --gold: #d6b086;
+      --text: #f3ece4;
+      --side: 210px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Plus Jakarta Sans', 'Figtree', system-ui, sans-serif;
+      font-size: 15px;
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+      background:
+        radial-gradient(ellipse at 15% 0%, rgba(214, 176, 134, .12), transparent 45%),
+        radial-gradient(ellipse at 100% 100%, rgba(214, 176, 134, .12), transparent 40%),
+        var(--bg);
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 3px;
+    }
+
+    #fx {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ===== Sidebar ===== */
+    .w3-sidebar {
+      width: var(--side) !important;
+      background: #141210 !important;
+      border-right: 1px solid rgba(217, 180, 138, .35);
+      padding-top: 32px;
+      z-index: 3;
+    }
+
+    .w3-sidebar h3 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 24px;
+      text-align: center;
+      color: #d9b48a !important;
+      margin: 0 0 20px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid rgba(217, 180, 138, .35);
+    }
+
+    .w3-sidebar .w3-button {
+      color: #f4f1ec !important;
+      font-size: 14px;
+      padding: 11px 18px !important;
+      margin: 0 10px 6px;
+      width: calc(100% - 20px);
+      text-align: left;
+      border: 1px solid transparent;
+      border-radius: 10px;
+      transition: transform .2s, background .2s;
+    }
+
+    .w3-sidebar .w3-button:hover {
+      background: rgba(217, 180, 138, .14) !important;
+      color: #f0cfa3 !important;
+      transform: translateX(4px);
+    }
+
+    .w3-sidebar .w3-button.active {
+      background: linear-gradient(90deg, rgba(217, 180, 138, .3), rgba(217, 180, 138, .05)) !important;
+      border-color: rgba(217, 180, 138, .35);
+      color: #f0cfa3 !important;
+    }
+
+    .side-foot {
+      position: absolute;
+      bottom: 20px;
+      left: 0;
+      right: 0;
+      padding: 0 10px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .social {
+      display: flex;
+      gap: 8px;
+    }
+
+    .social a {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid var(--line);
+      display: grid;
+      place-items: center;
+      color: var(--text);
+      background: #111;
+      text-decoration: none;
+      transition: transform .2s, border-color .2s, color .2s;
+    }
+
+    .social a:hover {
+      transform: translateY(-3px);
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .social svg {
+      width: 15px;
+      height: 15px;
+      fill: currentColor;
+    }
+
+    /* ===== Konten ===== */
+    .content {
+      position: relative;
+      z-index: 1;
+      margin-left: var(--side);
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr);
+      gap: 40px;
+      align-items: center;
+      padding: 32px 44px;
+      max-width: 1200px;
+    }
+
+    .content h1,
+    .content p {
+      margin: 0;
+    }
+
+    .content svg {
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    @keyframes up {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    .rv {
+      opacity: 0;
+      animation: up .7s cubic-bezier(.2, .7, .2, 1) forwards;
+      animation-delay: var(--d, 0s);
+    }
+
+    .bar {
+      width: 52px;
+      height: 2px;
+      background: var(--gold);
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(40px, 5vw, 62px);
+      line-height: 1.05;
+      font-weight: 700;
+    }
+
+    h1 span {
+      background: linear-gradient(90deg, #d6b086 20%, #f0dcc0 50%, #d6b086 80%);
+      background-size: 200% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: shine 5s linear infinite;
+    }
+
+    @keyframes shine {
+      to {
+        background-position: -200% 0;
+      }
+    }
+
+    .tag {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: 12px;
+      font-size: 12px;
+      letter-spacing: .45em;
+      color: var(--gold);
+    }
+
+    .tag::after {
+      content: "";
+      flex: 1;
+      max-width: 160px;
+      height: 1px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+    }
+
+    .lead {
+      margin-top: 16px;
+      font-size: 15px;
+      line-height: 1.6;
+      max-width: 32em;
+    }
+
+    .info {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 12px;
+      margin-top: 22px;
+      max-width: 520px;
+    }
+
+    .item {
+      --mx: 50%;
+      --my: 50%;
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0 14px;
+      height: 54px;
+      border-radius: 12px;
+      background: #161412;
+      border: 1px solid rgba(255, 255, 255, .1);
+      min-width: 0;
+      transition: border-color .2s, transform .25s;
+    }
+
+    .item::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      pointer-events: none;
+      background: radial-gradient(200px circle at var(--mx) var(--my), rgba(214, 176, 134, .14), transparent 60%);
+      opacity: 0;
+      transition: opacity .25s;
+    }
+
+    .item:hover {
+      border-color: var(--gold);
+      transform: translateY(-2px);
+    }
+
+    .item:hover::before {
+      opacity: 1;
+    }
+
+    .item svg {
+      width: 22px;
+      height: 22px;
+      fill: var(--gold);
+      stroke: none;
+      flex-shrink: 0;
+    }
+
+    .item small {
+      display: block;
+      font-size: 11px;
+      color: #bdb3a8;
+    }
+
+    .item b {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .item.copy {
+      cursor: pointer;
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 22px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      height: 44px;
+      padding: 0 26px;
+      border-radius: 999px;
+      border: 1.5px solid var(--gold);
+      color: var(--text);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      background: rgba(214, 176, 134, .06);
+      transition: background .2s, transform .2s;
+    }
+
+    .btn:hover {
+      background: rgba(214, 176, 134, .18);
+      transform: translateY(-1px);
+    }
+
+    .btn svg {
+      width: 17px;
+      height: 17px;
+      stroke: var(--gold);
+      stroke-width: 2;
+    }
+
+    .btn.solid {
+      background: linear-gradient(135deg, #e6c9a4, #a07f5a 50%, #e6c9a4);
+      color: #14110e;
+      border-color: transparent;
+      font-weight: 600;
+    }
+
+    .btn.solid svg {
+      stroke: #14110e;
+    }
+
+    /* Foto */
+    .photo {
+      position: relative;
+      justify-self: center;
+      width: min(100%, 320px);
+      aspect-ratio: 1 / 1.2;
+      margin: 0;
+      perspective: 800px;
+    }
+
+    .frame {
+      position: absolute;
+      inset: 0 7% 7% 7%;
+      border-radius: 26px;
+      padding: 2px;
+      background: linear-gradient(135deg, #e6c9a4, #6b523a 55%, #e6c9a4);
+      box-shadow: 0 0 40px rgba(214, 176, 134, .18);
+      transition: transform .15s ease-out;
+      transform-style: preserve-3d;
+    }
+
+    .frame .in {
+      width: 100%;
+      height: 100%;
+      border-radius: 24px;
+      overflow: hidden;
+      background: linear-gradient(180deg, #b8a592, #5c5249);
+      position: relative;
+    }
+
+    .frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+    }
+
+    .frame .ph {
+      position: absolute;
+      inset: 0;
+      display: none;
+      place-items: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 64px;
+      color: #2a231c;
+    }
+
+    .ring {
+      position: absolute;
+      border: 1px solid var(--line);
+      pointer-events: none;
+    }
+
+    .r1 {
+      top: 6%;
+      bottom: 30%;
+      right: -2%;
+      width: 7%;
+      border-left: none;
+      border-radius: 0 22px 22px 0;
+    }
+
+    .r2 {
+      left: -3%;
+      top: 50%;
+      width: 14%;
+      height: 40%;
+      border-right: none;
+      border-radius: 22px 0 0 22px;
+    }
+
+    .spark {
+      position: absolute;
+      color: var(--gold);
+      animation: tw 2.6s ease-in-out infinite;
+    }
+
+    .spark svg {
+      width: 100%;
+      height: 100%;
+      fill: currentColor;
+      stroke: none;
+    }
+
+    .s1 {
+      right: -3%;
+      top: -4%;
+      width: 26px;
+      height: 26px;
+    }
+
+    .s2 {
+      left: -8%;
+      top: 62%;
+      width: 18px;
+      height: 18px;
+      animation-delay: 1.2s;
+    }
+
+    @keyframes tw {
+      50% {
+        transform: scale(.6) rotate(20deg);
+        opacity: .5;
+      }
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 28px;
+      transform: translate(-50%, 30px);
+      opacity: 0;
+      z-index: 20;
+      padding: 12px 20px;
+      border-radius: 999px;
+      font-size: 14px;
+      background: #1b1814;
+      border: 1px solid var(--gold);
+      color: var(--text);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, .5);
+      transition: transform .3s, opacity .3s;
+      pointer-events: none;
+    }
+
+    .toast.show {
+      transform: translate(-50%, 0);
+      opacity: 1;
+    }
+
+    /* ===== Responsif ===== */
+    @media (max-width: 960px) {
+      .content {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        padding: 32px 28px;
+      }
+
+      .photo {
+        order: -1;
+        width: min(100%, 260px);
+        justify-self: start;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .w3-sidebar {
+        position: static !important;
+        width: 100% !important;
+        height: auto;
+        padding: 18px 0 14px;
+      }
+
+      .w3-sidebar h3 {
+        margin-bottom: 12px;
+        padding-bottom: 12px;
+      }
+
+      .side-foot {
+        position: static;
+        margin-top: 10px;
+      }
+
+      .content {
+        margin-left: 0;
+        min-height: 0;
+        padding: 28px 18px;
+      }
+
+      .info {
+        grid-template-columns: 1fr;
+      }
+
+      .tag {
+        letter-spacing: .3em;
+        font-size: 11px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+
+      .rv {
+        opacity: 1;
+      }
+
+      #fx {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="fx" aria-hidden="true"></canvas>
+
+  <!-- Sidebar -->
+  <div class="w3-sidebar w3-light-grey w3-bar-block">
+    <h3 class="w3-bar-item">Portofolio</h3>
+    <a href="Home.html" class="w3-bar-item w3-button">🏠 Home</a>
+    <a href="About.html" class="w3-bar-item w3-button active">👤 About</a>
+    <a href="Project.html" class="w3-bar-item w3-button">📁 Project</a>
+    <a href="Contact.html" class="w3-bar-item w3-button">📞 Contact</a>
+
+    <div class="side-foot">
+      <div class="social">
+        <a href="#" aria-label="GitHub"><svg viewBox="0 0 24 24">
+            <path
+              d="M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A11.5 11.5 0 0 0 12 .5z" />
+          </svg></a>
+        <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24">
+            <path
+              d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.5h4V21H3zM9.5 9.5h3.8v1.6h.1c.5-1 1.8-2 3.8-2 4 0 4.8 2.6 4.8 6V21h-4v-5.2c0-1.3 0-2.8-1.7-2.8s-2 1.3-2 2.7V21h-4z" />
+          </svg></a>
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24">
+            <path
+              d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm5 3.5a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9zm0 2a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM17.5 5.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+          </svg></a>
+        <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24">
+            <path
+              d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2C2 8.8 2 12 2 12s0 3.2.4 4.8a2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8C22 15.2 22 12 22 12s0-3.2-.4-4.8zM10 15V9l5.2 3z" />
+          </svg></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Isi halaman -->
+  <div class="content">
+    <section>
+      <div class="bar rv"></div>
+      <h1 class="rv" style="--d:.06s">About <span>Me</span></h1>
+      <div class="tag rv" style="--d:.12s">GET TO KNOW ME</div>
+      <p class="lead rv" style="--d:.18s">Saya adalah mahasiswa yang tertarik dalam bidang pengembangan teknologi,
+        desain web, dan solusi digital untuk masa depan yang lebih baik.</p>
+
+      <div class="info">
+        <div class="item rv" style="--d:.26s"><svg viewBox="0 0 24 24">
+            <circle cx="12" cy="7.5" r="4.5" />
+            <path d="M3.5 21c0-4.5 3.8-7 8.5-7s8.5 2.5 8.5 7z" />
+          </svg>
+          <div><small>Nama</small><b>Choirul Jamal</b></div>
+        </div>
+        <div class="item rv" style="--d:.32s"><svg viewBox="0 0 24 24">
+            <path
+              d="M7 2h2v2h6V2h2v2h3a1 1 0 0 1 1 1v15a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h3zM5 10v9h14v-9zm2 2h2v2H7zm4 0h2v2h-2zm4 0h2v2h-2zm-8 3h2v2H7zm4 0h2v2h-2z" />
+          </svg>
+          <div><small>Tanggal Lahir</small><b>10 November 2006 <span id="age"></span></b></div>
+        </div>
+        <div class="item rv" style="--d:.38s"><svg viewBox="0 0 24 24">
+            <path
+              d="M12 2a7.5 7.5 0 0 0-7.5 7.5C4.5 15 12 22 12 22s7.5-7 7.5-12.5A7.5 7.5 0 0 0 12 2zm0 10.5a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
+          </svg>
+          <div><small>Alamat</small><b>Indonesia</b></div>
+        </div>
+        <div class="item copy rv" style="--d:.44s" id="emailItem" tabindex="0" role="button" aria-label="Salin email">
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M3 5h18a1 1 0 0 1 1 1v.5l-10 7-10-7V6a1 1 0 0 1 1-1zm-1 4.2l10 7 10-7V18a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z" />
+          </svg>
+          <div><small>Email (klik untuk salin)</small><b>choiruljamal@gmail.com</b></div>
+        </div>
+        <div class="item rv" style="--d:.5s"><svg viewBox="0 0 24 24">
+            <path d="M12 3L1 9l11 6 9-4.9V17h2V9zM5 13.2V17c0 1.7 3.1 3 7 3s7-1.3 7-3v-3.8l-7 3.8z" />
+          </svg>
+          <div><small>Pendidikan</small><b>S1 Informatika</b></div>
+        </div>
+      </div>
+
+      <div class="actions rv" style="--d:.58s">
+        <a class="btn solid" href="cv-choirul-jamal.pdf" download>Download CV
+          <svg viewBox="0 0 24 24">
+            <path d="M12 4v11m0 0l-4-4m4 4l4-4M5 20h14" />
+          </svg></a>
+        <a class="btn" href="Contact.html">Hubungi Saya
+          <svg viewBox="0 0 24 24">
+            <path d="M9 5l7 7-7 7" />
+          </svg></a>
+      </div>
+    </section>
+
+    <figure class="photo rv" style="--d:.2s" id="photo">
+      <div class="ring r1"></div>
+      <div class="ring r2"></div>
+      <div class="frame" id="frame">
+        <div class="in">
+          <img src="src/assets/Jml.png" alt="Foto Choirul Jamal" id="img">
+          <div class="ph" id="ph">CJ</div>
+        </div>
+      </div>
+      <div class="spark s1"><svg viewBox="0 0 24 24">
+          <path d="M12 0c.6 7 2.4 9.4 12 12-9.6 2.6-11.4 5-12 12-.6-7-2.4-9.4-12-12 9.6-2.6 11.4-5 12-12z" />
+        </svg></div>
+      <div class="spark s2"><svg viewBox="0 0 24 24">
+          <path d="M12 0c.6 7 2.4 9.4 12 12-9.6 2.6-11.4 5-12 12-.6-7-2.4-9.4-12-12 9.6-2.6 11.4-5 12-12z" />
+        </svg></div>
+    </figure>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    /* Umur otomatis dari tanggal lahir */
+    (function () {
+      var b = new Date(2006, 0, 10), n = new Date();
+      var a = n.getFullYear() - b.getFullYear();
+      if (n < new Date(n.getFullYear(), b.getMonth(), b.getDate())) a--;
+      document.getElementById('age').textContent = '(' + a + ' tahun)';
+    })();
+
+    /* Foto cadangan jika Jml.png belum ada */
+    document.getElementById('img').addEventListener('error', function () {
+      this.style.display = 'none';
+      document.getElementById('ph').style.display = 'grid';
+    });
+
+    /* Toast + salin email */
+    var toastEl = document.getElementById('toast'), toastT;
+    function toast(m) {
+      toastEl.textContent = m; toastEl.classList.add('show');
+      clearTimeout(toastT); toastT = setTimeout(function () { toastEl.classList.remove('show'); }, 2400);
+    }
+    function copyEmail() {
+      var t = 'choiruljamal@gmail.com';
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(t).then(function () { toast('Email tersalin'); }, function () { toast('Gagal menyalin'); });
+      } else {
+        var x = document.createElement('textarea'); x.value = t; document.body.appendChild(x); x.select();
+        try { document.execCommand('copy'); toast('Email tersalin'); } catch (e) { toast('Gagal menyalin'); }
+        document.body.removeChild(x);
+      }
+    }
+    var em = document.getElementById('emailItem');
+    em.addEventListener('click', copyEmail);
+    em.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); copyEmail(); } });
+
+    /* Cahaya mengikuti kursor pada kartu info */
+    document.querySelectorAll('.item').forEach(function (el) {
+      el.addEventListener('mousemove', function (e) {
+        var r = el.getBoundingClientRect();
+        el.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+        el.style.setProperty('--my', (e.clientY - r.top) + 'px');
+      });
+    });
+
+    /* Foto miring mengikuti kursor */
+    (function () {
+      var p = document.getElementById('photo'), f = document.getElementById('frame');
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      p.addEventListener('mousemove', function (e) {
+        var r = p.getBoundingClientRect();
+        var x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+        f.style.transform = 'rotateY(' + (x * 10) + 'deg) rotateX(' + (-y * 10) + 'deg)';
+      });
+      p.addEventListener('mouseleave', function () { f.style.transform = ''; });
+    })();
+
+    /* Partikel emas di latar */
+    (function () {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      var c = document.getElementById('fx'), ctx = c.getContext('2d'), P = [], W, H;
+      function size() { W = c.width = innerWidth; H = c.height = innerHeight; }
+      size(); addEventListener('resize', size);
+      for (var i = 0; i < 45; i++) P.push({
+        x: Math.random() * innerWidth, y: Math.random() * innerHeight,
+        r: Math.random() * 1.6 + .4, v: Math.random() * .25 + .08, a: Math.random() * Math.PI * 2
+      });
+      (function loop() {
+        ctx.clearRect(0, 0, W, H);
+        P.forEach(function (p) {
+          p.y -= p.v; p.a += .02;
+          if (p.y < -5) { p.y = H + 5; p.x = Math.random() * W; }
+          ctx.globalAlpha = .25 + Math.sin(p.a) * .25;
+          ctx.fillStyle = '#e6c9a4';
+          ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, 6.283); ctx.fill();
+        });
+        requestAnimationFrame(loop);
+      })();
+    })();
+  </script>
+</body>
+
+</html>
