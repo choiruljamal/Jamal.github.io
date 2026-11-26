@@ -55,7 +55,7 @@
       z-index: 0;
     }
 
-    /* ===== Sidebar ===== */
+
     .w3-sidebar {
       width: var(--side) !important;
       background: #141210 !important;
@@ -138,7 +138,7 @@
       fill: currentColor;
     }
 
-    /* ===== Konten ===== */
+
     .content {
       position: relative;
       z-index: 1;
@@ -272,7 +272,8 @@
       font-size: 11px;
     }
 
-    /* Kartu proyek */
+
+
     .grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -428,7 +429,7 @@
       color: var(--muted);
     }
 
-    /* ===== Responsif ===== */
+
     @media (max-width: 1100px) {
       .grid {
         grid-template-columns: 1fr;
@@ -497,7 +498,7 @@
 <body>
   <canvas id="fx" aria-hidden="true"></canvas>
 
-  <!-- Sidebar -->
+
   <div class="w3-sidebar w3-light-grey w3-bar-block">
     <h3 class="w3-bar-item">Portofolio</h3>
     <a href="Home.html" class="w3-bar-item w3-button">🏠 Home</a>
@@ -527,7 +528,7 @@
     </div>
   </div>
 
-  <!-- Isi halaman -->
+
   <div class="content">
     <div class="head">
       <div>
@@ -623,7 +624,7 @@
   </div>
 
   <script>
-    /* Filter proyek + jumlah per kategori */
+
     (function () {
       var btns = document.querySelectorAll('.fbtn');
       var cards = document.querySelectorAll('.pc');
@@ -650,7 +651,7 @@
       });
     })();
 
-    /* Cahaya mengikuti kursor pada kartu */
+
     document.querySelectorAll('.pc').forEach(function (el) {
       el.addEventListener('mousemove', function (e) {
         var r = el.getBoundingClientRect();
@@ -659,7 +660,7 @@
       });
     });
 
-    /* Partikel emas di latar */
+
     (function () {
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
       var c = document.getElementById('fx'), ctx = c.getContext('2d'), P = [], W, H;

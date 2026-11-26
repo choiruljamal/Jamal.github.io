@@ -53,7 +53,7 @@
       z-index: 0;
     }
 
-    /* ===== Sidebar ===== */
+
     .w3-sidebar {
       width: var(--side) !important;
       background: #141210 !important;
@@ -136,7 +136,7 @@
       fill: currentColor;
     }
 
-    /* ===== Konten ===== */
+
     .content {
       position: relative;
       z-index: 1;
@@ -352,7 +352,7 @@
       stroke: #14110e;
     }
 
-    /* Foto */
+
     .photo {
       position: relative;
       justify-self: center;
@@ -482,7 +482,7 @@
       opacity: 1;
     }
 
-    /* ===== Responsif ===== */
+
     @media (max-width: 960px) {
       .content {
         grid-template-columns: 1fr;
@@ -554,7 +554,7 @@
 <body>
   <canvas id="fx" aria-hidden="true"></canvas>
 
-  <!-- Sidebar -->
+
   <div class="w3-sidebar w3-light-grey w3-bar-block">
     <h3 class="w3-bar-item">Portofolio</h3>
     <a href="Home.html" class="w3-bar-item w3-button">🏠 Home</a>
@@ -584,7 +584,7 @@
     </div>
   </div>
 
-  <!-- Isi halaman -->
+
   <div class="content">
     <section>
       <div class="bar rv"></div>
@@ -654,13 +654,13 @@
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <script>
-    /* Foto cadangan jika Jml.png belum ada */
+
     document.getElementById('img').addEventListener('error', function () {
       this.style.display = 'none';
       document.getElementById('ph').style.display = 'grid';
     });
 
-    /* Toast + salin email */
+
     var toastEl = document.getElementById('toast'), toastT;
     function toast(m) {
       toastEl.textContent = m; toastEl.classList.add('show');
@@ -680,7 +680,7 @@
     em.addEventListener('click', copyEmail);
     em.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); copyEmail(); } });
 
-    /* Cahaya mengikuti kursor pada kartu info */
+
     document.querySelectorAll('.item').forEach(function (el) {
       el.addEventListener('mousemove', function (e) {
         var r = el.getBoundingClientRect();
@@ -689,7 +689,7 @@
       });
     });
 
-    /* Foto miring mengikuti kursor */
+
     (function () {
       var p = document.getElementById('photo'), f = document.getElementById('frame');
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -701,7 +701,7 @@
       p.addEventListener('mouseleave', function () { f.style.transform = ''; });
     })();
 
-    /* Download CV: bisa diunduh siapa saja, dan tetap terbuka di tab baru jika unduhan diblokir */
+
     (function () {
       var btn = document.getElementById('cvBtn');
       var url = btn.getAttribute('href');
@@ -726,7 +726,7 @@
       });
     })();
 
-    /* Partikel emas di latar */
+
     (function () {
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
       var c = document.getElementById('fx'), ctx = c.getContext('2d'), P = [], W, H;

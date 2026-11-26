@@ -55,7 +55,7 @@
       z-index: 0;
     }
 
-    /* ===== Sidebar ===== */
+
     .w3-sidebar {
       width: var(--side) !important;
       background: #141210 !important;
@@ -138,7 +138,7 @@
       fill: currentColor;
     }
 
-    /* ===== Konten ===== */
+
     .content {
       position: relative;
       z-index: 1;
@@ -312,7 +312,7 @@
       stroke: #14110e;
     }
 
-    /* Kartu navigasi cepat */
+
     .quick {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -384,7 +384,7 @@
       color: var(--muted);
     }
 
-    /* Foto */
+
     .photo {
       position: relative;
       justify-self: center;
@@ -491,7 +491,7 @@
       }
     }
 
-    /* Lencana melayang */
+
     .chip {
       position: absolute;
       display: flex;
@@ -609,7 +609,7 @@
 <body>
   <canvas id="fx" aria-hidden="true"></canvas>
 
-  <!-- Sidebar -->
+
   <div class="w3-sidebar w3-light-grey w3-bar-block">
     <h3 class="w3-bar-item">Portofolio</h3>
     <a href="Home.html" class="w3-bar-item w3-button active">🏠 Home</a>
@@ -639,7 +639,7 @@
     </div>
   </div>
 
-  <!-- Isi halaman -->
+
   <div class="content">
     <section>
       <div class="hello rv" id="greet">SELAMAT DATANG</div>
@@ -708,14 +708,14 @@
   </div>
 
   <script>
-    /* Salam sesuai waktu (WIB) */
+
     (function () {
       var h = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' })).getHours();
       var s = h < 11 ? 'SELAMAT PAGI' : h < 15 ? 'SELAMAT SIANG' : h < 18 ? 'SELAMAT SORE' : 'SELAMAT MALAM';
       document.getElementById('greet').textContent = s;
     })();
 
-    /* Efek mengetik bergantian */
+
     (function () {
       var el = document.getElementById('typed');
       var words = ['Web Developer', 'Web Designer', 'Mahasiswa Informatika', 'Pecinta Teknologi'];
@@ -732,13 +732,13 @@
       })();
     })();
 
-    /* Foto cadangan jika Jml.png belum ada */
+
     document.getElementById('img').addEventListener('error', function () {
       this.style.display = 'none';
       document.getElementById('ph').style.display = 'grid';
     });
 
-    /* Cahaya mengikuti kursor pada kartu */
+
     document.querySelectorAll('.qc').forEach(function (el) {
       el.addEventListener('mousemove', function (e) {
         var r = el.getBoundingClientRect();
@@ -747,7 +747,7 @@
       });
     });
 
-    /* Foto miring mengikuti kursor */
+
     (function () {
       var p = document.getElementById('photo'), f = document.getElementById('frame');
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -759,7 +759,7 @@
       p.addEventListener('mouseleave', function () { f.style.transform = ''; });
     })();
 
-    /* Partikel emas di latar */
+
     (function () {
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
       var c = document.getElementById('fx'), ctx = c.getContext('2d'), P = [], W, H;

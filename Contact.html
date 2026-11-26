@@ -44,7 +44,7 @@
       outline-offset: 3px;
     }
 
-    /* Partikel latar */
+
     #fx {
       position: fixed;
       inset: 0;
@@ -54,7 +54,7 @@
       z-index: 0;
     }
 
-    /* ===== Sidebar ===== */
+
     .w3-sidebar {
       width: var(--side) !important;
       background: #141210 !important;
@@ -138,7 +138,7 @@
       fill: currentColor;
     }
 
-    /* ===== Konten ===== */
+
     .content {
       position: relative;
       z-index: 1;
@@ -171,7 +171,7 @@
       stroke-linejoin: round;
     }
 
-    /* Animasi masuk */
+
     @keyframes up {
       from {
         opacity: 0;
@@ -431,7 +431,7 @@
       pointer-events: none;
     }
 
-    /* ===== Kartu form ===== */
+
     .card {
       position: relative;
       border-radius: 26px;
@@ -642,7 +642,7 @@
       height: 20px;
     }
 
-    /* Toast */
+
     .toast {
       position: fixed;
       left: 50%;
@@ -666,7 +666,7 @@
       opacity: 1;
     }
 
-    /* ===== Responsif ===== */
+
     @media (max-width: 960px) {
       .content {
         grid-template-columns: 1fr;
@@ -743,7 +743,7 @@
 <body>
   <canvas id="fx" aria-hidden="true"></canvas>
 
-  <!-- Sidebar -->
+
   <div class="w3-sidebar w3-light-grey w3-bar-block">
     <h3 class="w3-bar-item">Portofolio</h3>
     <a href="Home.html" class="w3-bar-item w3-button">🏠 Home</a>
@@ -774,7 +774,7 @@
     </div>
   </div>
 
-  <!-- Isi halaman -->
+
   <div class="content">
     <section>
       <div class="eyebrow rv">GET IN TOUCH</div>
@@ -882,7 +882,7 @@
     var EMAIL = 'choiruljamal@gmail.com';
     var IG = 'choiruljamal.06';
 
-    /* Toast */
+
     var toastEl = document.getElementById('toast'), toastT;
     function toast(msg) {
       toastEl.textContent = msg;
@@ -891,7 +891,7 @@
       toastT = setTimeout(function () { toastEl.classList.remove('show'); }, 2400);
     }
 
-    /* Salin ke clipboard */
+
     document.querySelectorAll('[data-copy]').forEach(function (btn) {
       btn.addEventListener('click', function () {
         var text = btn.getAttribute('data-copy');
@@ -907,7 +907,7 @@
       });
     });
 
-    /* Efek cahaya mengikuti kursor */
+
     document.querySelectorAll('.link, .card').forEach(function (el) {
       el.addEventListener('mousemove', function (e) {
         var r = el.getBoundingClientRect();
@@ -916,7 +916,7 @@
       });
     });
 
-    /* Status ketersediaan (WIB, 08.00 - 21.00) */
+
     (function () {
       var wib = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' }));
       var h = wib.getHours(), m = ('0' + wib.getMinutes()).slice(-2);
@@ -926,7 +926,7 @@
         (online ? 'Tersedia sekarang' : 'Sedang offline, balasan besok') + ' · ' + ('0' + h).slice(-2) + '.' + m + ' WIB';
     })();
 
-    /* Form */
+
     var form = document.getElementById('contactForm');
     var msg = form.pesan, counter = document.getElementById('count');
     msg.addEventListener('input', function () {
@@ -983,7 +983,7 @@
       }
     });
 
-    /* Partikel emas di latar */
+
     (function () {
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
       var c = document.getElementById('fx'), ctx = c.getContext('2d'), P = [], W, H;
